@@ -15,7 +15,7 @@
 <style scoped lang="css">
 .container {
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.46), rgba(0, 0, 0, 0.46)),
-    url("./assets/images/home-hero.png") no-repeat center center;
+    url("https://picsum.photos/1200/500") no-repeat center center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;

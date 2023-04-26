@@ -13,6 +13,8 @@ body {
   margin: 0;
   padding: 0;
   background-color: #fff7ed;
+  max-width: 1200px;
+  margin: auto;
 }
 
 body::-webkit-scrollbar {
@@ -31,5 +33,9 @@ a {
 .btn {
   border: none;
   padding: 0.5rem 2rem;
-  border-radius: 0.3rem;
+  border-radius: 10px;
+}
+
+a:hover {
+  transform: translate(1px, 1px);
 }
