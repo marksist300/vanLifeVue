@@ -9,6 +9,8 @@ import VanItem from "../pages/VanItem.vue";
 import Dashboard from "../pages/Host/Dashboard.vue";
 import Income from "../pages/Host/Income.vue";
 import Reviews from "../pages/Host/Reviews.vue";
+import HostVanItem from "../pages/Host/HostVans/HostVanItem.vue";
+import HostVans from "../pages/Host/HostVans/HostVans.vue";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -21,6 +23,8 @@ const router = createRouter({
       children: [
         { path: "dashboard", name: "Dashboard", component: Dashboard },
         { path: "income", name: "Income", component: Income },
+        { path: "vans", name: "HostVans", component: HostVans },
+        { path: "vans/:id", name: "HostVanItem", component: HostVanItem },
         { path: "reviews", name: "Reviews", component: Reviews },
       ],
     },

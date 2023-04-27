@@ -34,9 +34,16 @@ header > a {
   font-weight: 600;
   color: #4d4d4d;
 }
-
 .headerLinks {
   display: flex;
   gap: 1rem;
+}
+.headerLinks > *:hover {
+  font-weight: 500;
+}
+a.router-link-active {
+  font-weight: 700;
+  text-decoration: underline;
+  color: #161616;
 }
 </style>

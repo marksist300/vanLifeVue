@@ -12,6 +12,9 @@
         <router-link to="/host/income" class="hostNavLinks">Income</router-link>
       </li>
       <li>
+        <router-link to="/host/vans" class="hostNavLinks">Vans</router-link>
+      </li>
+      <li>
         <router-link to="/host/reviews" class="hostNavLinks"
           >Reviews</router-link
         >
@@ -43,7 +46,7 @@ ul {
   font-weight: 600;
 }
 
-a.router-link-exact-active {
+a.router-link-active {
   text-decoration: underline;
   font-weight: 700;
   color: #e17654;
