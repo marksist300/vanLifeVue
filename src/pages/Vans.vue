@@ -8,7 +8,7 @@ import type { Ref } from "vue";
 const vans: Ref<VanData[] | undefined> = ref(undefined);
 
 onMounted(async () => {
-  vans.value = (await getVanData(`api/vans`)) as VanData[];
+  vans.value = (await getVanData(`api/vans/`)) as VanData[];
 });
 </script>
 
@@ -28,7 +28,7 @@ onMounted(async () => {
         v-for="van of vans"
         class="vanContainer"
       >
-        <router-link :to="`vans/${van.id}`">
+        <router-link :to="`/vans/${van.id}`">
           <img :src="van.imageUrl" alt="Image of van" class="vanImg" />
           <div class="vanInfoContainer">
             <span class="vanTitle">{{ van.name }}</span>

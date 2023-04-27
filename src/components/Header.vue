@@ -6,6 +6,7 @@ import { Suspense } from "vue";
   <header>
     <router-link to="/"><h1>#VanLife</h1></router-link>
     <div class="headerLinks">
+      <router-link to="/host">Host</router-link>
       <router-link to="/about">About</router-link>
       <Suspense>
         <template #default>
