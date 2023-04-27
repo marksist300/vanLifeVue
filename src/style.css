@@ -40,3 +40,24 @@ a {
 a:hover {
   transform: translate(1px, 1px);
 }
+
+.tag {
+  color: #fff;
+  font-weight: 500;
+  align-self: start;
+  margin-left: 0.15rem;
+  padding: 0.3rem 1.2rem;
+  border-radius: 5px;
+}
+
+.simpleTag {
+  background-color: #e17654;
+}
+
+.ruggedTag {
+  background-color: #115e59;
+}
+
+.luxuryTag {
+  background-color: #161616;
+}

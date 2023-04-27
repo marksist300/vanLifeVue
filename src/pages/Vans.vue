@@ -1,25 +1,14 @@
 <script setup lang="ts" suspendible="false">
 import { onMounted, ref } from "vue";
+import { getVanData } from "../utils/auxFunctions";
+
 import type { VanData } from "../config/types";
 import type { Ref } from "vue";
 
-const vans: Ref<VanData[] | null> = ref(null);
+const vans: Ref<VanData[] | undefined> = ref(undefined);
 
-const getVanData = async () => {
-  try {
-    const response = await fetch(`api/vans`);
-    const data = await response.json();
-    if (data) {
-      return data.vans;
-    } else {
-      throw new Error("Failed to fetch Van data");
-    }
-  } catch (error) {
-    console.error(error);
-  }
-};
 onMounted(async () => {
-  vans.value = await getVanData();
+  vans.value = (await getVanData(`api/vans`)) as VanData[];
 });
 </script>
 
@@ -33,13 +22,20 @@ onMounted(async () => {
     </div>
 
     <section class="vanContainerSection">
-      <div v-if="vans !== null" v-for="van of vans" class="vanContainer">
-        <img :src="van.imageUrl" alt="Image of van" class="vanImg" />
-        <div class="vanInfoContainer">
-          <span class="vanTitle">{{ van.name }}</span>
-          <span class="priceTag">{{ van.price }}<small>/day</small></span>
-        </div>
-        <span :class="`${van.type} tags`">{{ van.type }}</span>
+      <div
+        :key="van.id"
+        v-if="vans !== null"
+        v-for="van of vans"
+        class="vanContainer"
+      >
+        <router-link :to="`vans/${van.id}`">
+          <img :src="van.imageUrl" alt="Image of van" class="vanImg" />
+          <div class="vanInfoContainer">
+            <span class="vanTitle">{{ van.name }}</span>
+            <span class="priceTag">${{ van.price }}<small>/day</small></span>
+          </div>
+          <span :class="`${van.type}Tag tag`">{{ van.type }}</span>
+        </router-link>
       </div>
     </section>
   </main>
@@ -64,6 +60,10 @@ main {
   gap: 2.5rem;
   margin-top: 3rem;
 }
+.vanContainer {
+  display: flex;
+  flex-direction: column;
+}
 
 .vanInfoContainer {
   display: flex;
@@ -79,34 +79,9 @@ main {
   flex-direction: column;
 }
 
-.vanContainer {
-  display: flex;
-  flex-direction: column;
-}
-
 .vanImg {
   width: 10rem;
   height: 10rem;
-}
-
-.tags {
-  color: #fff;
-  font-weight: 500;
-  align-self: start;
-  margin-left: 0.15rem;
-  padding: 0.3rem 1.2rem;
-  border-radius: 5px;
-}
-
-.simple {
-  background-color: #e17654;
-}
-
-.rugged {
-  background-color: #115e59;
-}
-
-.luxury {
-  background-color: #161616;
+  cursor: pointer;
 }
 </style>

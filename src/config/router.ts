@@ -2,6 +2,8 @@ import { createRouter, createWebHistory } from "vue-router";
 import Home from "../pages/Home.vue";
 import About from "../pages/About.vue";
 import Vans from "../pages/Vans.vue";
+import VanItem from "../pages/VanItem.vue";
+
 const router = createRouter({
   history: createWebHistory(),
   routes: [
@@ -15,6 +17,11 @@ const router = createRouter({
       path: "/vans",
       name: "Vans",
       component: Vans,
+    },
+    {
+      path: "/vans/:id",
+      name: "VansItem",
+      component: VanItem,
     },
   ],
 });
