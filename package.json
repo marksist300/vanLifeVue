@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "miragejs": "^0.1.47",
     "vue": "^3.2.47",
     "vue-router": "4"
   },

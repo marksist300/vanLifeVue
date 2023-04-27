@@ -1,11 +1,19 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import "./config/fauxServer";
+import { Suspense } from "vue";
+</script>
 
 <template>
   <header>
     <router-link to="/"><h1>#VanLife</h1></router-link>
     <div class="headerLinks">
       <router-link to="/about">About</router-link>
-      <router-link to="/vans">Vans</router-link>
+      <Suspense>
+        <template #default>
+          <router-link to="/vans">Vans</router-link>
+        </template>
+        <template #fallback> Loading... </template>
+      </Suspense>
     </div>
   </header>
   <router-view></router-view>

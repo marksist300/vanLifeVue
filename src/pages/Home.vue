@@ -15,12 +15,13 @@
 <style scoped lang="css">
 .container {
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.46), rgba(0, 0, 0, 0.46)),
-    url("https://picsum.photos/1200/500") no-repeat center center;
+    url("https://picsum.photos/1200/500/") no-repeat center center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
   min-height: 350px;
+  height: 400px;
   color: white;
   padding: 4rem 1.6rem;
   display: flex;
