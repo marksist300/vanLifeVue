@@ -17,7 +17,9 @@ onMounted(async () => {
 
 <template>
   <main>
-    <router-link to="/vans" class="breadcrumbLink">Back to Vans</router-link>
+    <router-link to="/vans" class="breadcrumbLink"
+      >👈 <span class="breadcrumbText"> Back to Vans</span></router-link
+    >
     <img :src="vanData?.imageUrl" alt="Image of Van" class="vanImg" />
     <section class="vanDetailsContainer">
       <span :class="`${vanData?.type}Tag tag`">{{ vanData?.type }}</span>
@@ -35,12 +37,17 @@ main {
   max-height: 700px;
   margin: auto;
 }
+
 .breadcrumbLink {
   display: block;
-  text-decoration: underline;
   width: 90%;
   margin: 1rem auto;
 }
+
+.breadcrumbText {
+  text-decoration: underline;
+}
+
 .vanImg {
   display: block;
   width: 90%;
