@@ -20,7 +20,13 @@ onMounted(async () => {
     <router-link to="/vans" class="breadcrumbLink"
       >👈 <span class="breadcrumbText"> Back to Vans</span></router-link
     >
-    <img :src="vanData?.imageUrl" alt="Image of Van" class="vanImg" />
+    <img
+      v-if="vanData?.imageUrl"
+      :src="vanData.imageUrl"
+      alt="Image of Van"
+      class="vanImg"
+    />
+    <p v-else class="imgFallbackText">Image loading</p>
     <section class="vanDetailsContainer">
       <span :class="`${vanData?.type}Tag tag`">{{ vanData?.type }}</span>
       <h1 class="title">{{ vanData?.name }}</h1>
@@ -52,6 +58,14 @@ main {
   display: block;
   width: 90%;
   margin: auto;
+}
+
+.imgFallbackText {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 300px;
 }
 
 .vanDetailsContainer {
