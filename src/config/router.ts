@@ -24,7 +24,12 @@ const router = createRouter({
         { path: "dashboard", name: "Dashboard", component: Dashboard },
         { path: "income", name: "Income", component: Income },
         { path: "vans", name: "HostVans", component: HostVans },
-        { path: "vans/:id", name: "HostVanItem", component: HostVanItem },
+        {
+          path: "vans/:id",
+          name: "HostVanItem",
+          component: HostVanItem,
+          props: route => route.query,
+        },
         { path: "reviews", name: "Reviews", component: Reviews },
       ],
     },

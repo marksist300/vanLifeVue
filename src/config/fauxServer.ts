@@ -90,16 +90,16 @@ createServer({
     });
 
     this.get("/host/vans", schema => {
-      // Hard-code the hostId for now => TEMPORARY
+      // Hard-code the hostId for now
       //@ts-ignore
       return schema.vans.where({ hostId: "123" });
     });
 
     this.get("/host/vans/:id", (schema, request) => {
-      // Hard-code the hostId for now => TEMPORARY
+      // Hard-code the hostId for now
       const id = request.params.id;
       //@ts-ignore
-      return schema.vans.where({ id, hostId: "123" });
+      return schema.vans.findBy({ id, hostId: "123" });
     });
   },
 });
