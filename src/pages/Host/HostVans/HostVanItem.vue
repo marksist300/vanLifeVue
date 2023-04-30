@@ -45,9 +45,15 @@ onMounted(async () => {
         </div>
       </div>
       <nav class="navLinks">
-        <router-link to="details">Details</router-link>
-        <router-link to="pricing">Pricing</router-link>
-        <router-link to="photos">Photos</router-link>
+        <router-link :to="{ path: 'details', query: { ...van } }"
+          >Details</router-link
+        >
+        <router-link :to="{ path: 'pricing', query: { ...van } }"
+          >Pricing</router-link
+        >
+        <router-link :to="{ path: 'photos', query: { ...van } }"
+          >Photos</router-link
+        >
       </nav>
       <router-view></router-view>
     </section>

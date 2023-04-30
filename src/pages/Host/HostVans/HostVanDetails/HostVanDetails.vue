@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <main></main>
+  <main>{{ $route.query.name }}</main>
 </template>
 
 <style scoped></style>
