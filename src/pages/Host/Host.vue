@@ -14,7 +14,7 @@
         >
       </li>
       <li>
-        <router-link :to="{ name: 'HostVans' }" class="hostNavLinks"
+        <router-link :to="{ path: '/host/vans/' }" class="hostNavLinks"
           >Vans</router-link
         >
       </li>

@@ -35,13 +35,21 @@ onMounted(async () => {
     <router-link to="../vans" class="breadcrumbLink"
       >👈 <span class="breadcrumbText"> Back to Vans</span></router-link
     >
-    <section class="vanContainer">
-      <img :src="van.imageUrl" class="vanImg" />
-      <div class="vanInfo">
-        <span :class="`${type}Tag tag`">{{ van.type }}</span>
-        <h3 class="nameType">{{ van.name }}</h3>
-        <span class="priceTag">{{ van.price }}<small>/day</small></span>
+    <section class="containerCard">
+      <div class="vanContainer">
+        <img :src="van.imageUrl" class="vanImg" />
+        <div class="vanInfo">
+          <span :class="`${type}Tag tag`">{{ van.type }}</span>
+          <h3 class="nameType">{{ van.name }}</h3>
+          <span class="priceTag">{{ van.price }}<small>/day</small></span>
+        </div>
       </div>
+      <nav class="navLinks">
+        <router-link to="details">Details</router-link>
+        <router-link to="pricing">Pricing</router-link>
+        <router-link to="photos">Photos</router-link>
+      </nav>
+      <router-view></router-view>
     </section>
   </main>
 </template>
@@ -59,13 +67,16 @@ onMounted(async () => {
 .breadcrumbText {
   text-decoration: underline;
 }
+.containerCard {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+}
 .vanContainer {
   display: flex;
-  align-items: center;
-  background-color: white;
-  margin-bottom: 15px;
-  padding-block: 18px;
-  padding-left: 24px;
+  margin-bottom: 1rem;
+  padding-block: 1.2rem;
+  padding-left: 1.7rem;
 }
 .vanImg {
   width: 8rem;
@@ -89,5 +100,24 @@ onMounted(async () => {
 .priceTag {
   font-size: 1.3rem;
   font-weight: 600;
+}
+
+.navLinks {
+  display: flex;
+  gap: 1rem;
+  padding-left: 1.7rem;
+  margin-bottom: 2rem;
+  font-weight: 500;
+  font-size: 16.1492px;
+  line-height: 21px;
+  display: flex;
+  align-items: center;
+  color: #4d4d4d;
+}
+.navLinks > :hover,
+.router-link-active {
+  text-decoration: underline;
+  font-weight: 700;
+  color: #000;
 }
 </style>

@@ -31,7 +31,7 @@ onMounted(() => {
         v-for="van of hostsVans"
         class="vanCard"
       >
-        <router-link :to="{ path: '/host/vans/1', query: { ...van } }">
+        <router-link :to="{ path: '/host/vans/123', query: { ...van } }">
           <img :src="van.imageUrl" alt="van image" />
           <div class="vanInfo">
             <h3>{{ van.name }}</h3>
@@ -43,6 +43,7 @@ onMounted(() => {
         <h3>You don't currently have any listed vans</h3>
       </div>
     </section>
+    <router-view></router-view>
   </main>
 </template>
 
