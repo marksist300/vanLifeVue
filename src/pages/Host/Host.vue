@@ -4,18 +4,22 @@
   <nav class="hostNav">
     <ul>
       <li>
-        <router-link to="/host/dashboard" class="hostNavLinks"
+        <router-link :to="{ name: 'Dashboard' }" class="hostNavLinks"
           >Dashboard</router-link
         >
       </li>
       <li>
-        <router-link to="/host/income" class="hostNavLinks">Income</router-link>
+        <router-link :to="{ name: 'Income' }" class="hostNavLinks"
+          >Income</router-link
+        >
       </li>
       <li>
-        <router-link to="/host/vans" class="hostNavLinks">Vans</router-link>
+        <router-link :to="{ name: 'HostVans' }" class="hostNavLinks"
+          >Vans</router-link
+        >
       </li>
       <li>
-        <router-link to="/host/reviews" class="hostNavLinks"
+        <router-link :to="{ name: 'Reviews' }" class="hostNavLinks"
           >Reviews</router-link
         >
       </li>

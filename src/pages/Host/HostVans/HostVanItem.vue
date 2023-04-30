@@ -31,21 +31,36 @@ onMounted(async () => {
 </script>
 
 <template>
-  <main v-if="van" class="container">
-    <img :src="van.imageUrl" class="vanImg" />
-    <div class="vanInfo">
-      <span>{{ van.type }}</span>
-      <span>{{ van.name }}</span>
-      <span>{{ van.price }}<small>/day</small></span>
-    </div>
+  <main v-if="van" class="pageContainer">
+    <router-link to="../vans" class="breadcrumbLink"
+      >👈 <span class="breadcrumbText"> Back to Vans</span></router-link
+    >
+    <section class="vanContainer">
+      <img :src="van.imageUrl" class="vanImg" />
+      <div class="vanInfo">
+        <span :class="`${type}Tag tag`">{{ van.type }}</span>
+        <h3 class="nameType">{{ van.name }}</h3>
+        <span class="priceTag">{{ van.price }}<small>/day</small></span>
+      </div>
+    </section>
   </main>
 </template>
 
 <style scoped>
-.container {
-  display: flex;
-  margin: auto;
+.pageContainer {
   width: 85%;
+  margin: auto;
+}
+.breadcrumbLink {
+  display: block;
+  margin: 2.5rem 0;
+}
+
+.breadcrumbText {
+  text-decoration: underline;
+}
+.vanContainer {
+  display: flex;
   align-items: center;
   background-color: white;
   margin-bottom: 15px;
@@ -60,8 +75,19 @@ onMounted(async () => {
 .vanInfo {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
   margin-left: 1rem;
   justify-content: center;
+}
+
+.nameType {
+  font-size: 1.5rem;
+  font-weight: 700;
+  padding: 0;
+  margin: 0.5rem 0 0rem 0;
+}
+
+.priceTag {
+  font-size: 1.3rem;
+  font-weight: 600;
 }
 </style>
