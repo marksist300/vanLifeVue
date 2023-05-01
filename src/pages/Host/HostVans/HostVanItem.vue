@@ -32,7 +32,7 @@ onMounted(async () => {
 
 <template>
   <main v-if="van" class="pageContainer">
-    <router-link to="../vans" class="breadcrumbLink"
+    <router-link to="../" class="breadcrumbLink"
       >👈 <span class="breadcrumbText"> Back to Vans</span></router-link
     >
     <section class="containerCard">
@@ -45,13 +45,13 @@ onMounted(async () => {
         </div>
       </div>
       <nav class="navLinks">
-        <router-link :to="{ path: 'details', query: { ...van } }"
+        <router-link :to="{ name: 'HostVanDetails', query: { ...van } }"
           >Details</router-link
         >
-        <router-link :to="{ path: 'pricing', query: { ...van } }"
+        <router-link :to="{ name: 'HostVanPricing', query: { ...van } }"
           >Pricing</router-link
         >
-        <router-link :to="{ path: 'photos', query: { ...van } }"
+        <router-link :to="{ name: 'HostVanPhotos', query: { ...van } }"
           >Photos</router-link
         >
       </nav>

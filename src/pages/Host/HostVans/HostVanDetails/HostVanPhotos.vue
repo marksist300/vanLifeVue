@@ -2,14 +2,8 @@
 
 <template>
   <article>
-    <h4 class="submenuTitle">title</h4>
-    <p class="submenuText">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit quidem
-      corporis aliquid? Eum unde corrupti at quas, consequatur earum culpa a
-      alias nulla ut illo obcaecati odit iusto dolorem sequi dicta reiciendis
-      quis dignissimos? Sapiente in odit reiciendis saepe nisi porro natus?
-      Dicta repudiandae accusamus ipsa nemo, maiores laboriosam itaque.
-    </p>
+    <h4 class="submenuTitle">Photos</h4>
+    <p class="submenuText">Photos: {{ $route.query }}</p>
   </article>
 </template>
 

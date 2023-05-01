@@ -1,7 +1,18 @@
 <script setup lang="ts"></script>
 
 <template>
-  <main></main>
+  <article>
+    <h4 class="submenuTitle">Pricing</h4>
+    <p class="submenuText">Pricing: {{ $route.query }}</p>
+  </article>
 </template>
 
-<style scoped></style>
+<style scoped>
+.submenuTitle {
+  font-weight: 700;
+  padding-left: 1.7rem;
+}
+.submenuText {
+  padding: 0.7rem 1.7rem;
+}
+</style>
