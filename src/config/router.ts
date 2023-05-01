@@ -33,7 +33,6 @@ const router = createRouter({
           path: "dashboard",
           name: "Dashboard",
           component: Dashboard,
-          alias: "dashboard",
         },
         { path: "income", name: "Income", component: Income },
         {
@@ -52,6 +51,10 @@ const router = createRouter({
               children: [
                 {
                   path: "",
+                  redirect: { name: "HostVanDetails" },
+                },
+                {
+                  path: "details",
                   name: "HostVanDetails",
                   component: HostVanDetails,
                   props: route => route.query,

@@ -1,24 +1,28 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { useRoute } from "vue-router";
+import { onMounted, ref } from "vue";
+const route = useRoute();
+const imgUrl = ref("");
+onMounted(() => {
+  if (route.query.imageUrl && typeof route.query.imageUrl === "string") {
+    imgUrl.value = route.query.imageUrl;
+  }
+});
+</script>
 
 <template>
   <article>
-    <h4 class="submenuTitle">title</h4>
-    <p class="submenuText">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit quidem
-      corporis aliquid? Eum unde corrupti at quas, consequatur earum culpa a
-      alias nulla ut illo obcaecati odit iusto dolorem sequi dicta reiciendis
-      quis dignissimos? Sapiente in odit reiciendis saepe nisi porro natus?
-      Dicta repudiandae accusamus ipsa nemo, maiores laboriosam itaque.
-    </p>
+    <img :src="imgUrl" alt="Image of van" class="vanImg" />
   </article>
 </template>
 
 <style scoped>
-.submenuTitle {
-  font-weight: 700;
-  padding-left: 1.7rem;
+article {
+  padding: 2rem 1.7rem;
 }
-.submenuText {
-  padding: 0.7rem 1.7rem;
+.vanImg {
+  height: 8rem;
+  width: 8rem;
+  margin-bottom: 0.5rem;
 }
 </style>

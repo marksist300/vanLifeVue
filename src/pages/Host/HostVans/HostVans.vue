@@ -32,7 +32,7 @@ onMounted(() => {
         class="vanCard"
       >
         <router-link :to="{ path: '/host/vans/123', query: { ...van } }">
-          <img :src="van.imageUrl" alt="van image" />
+          <img :src="van.imageUrl" alt="van image" class="vanImg" />
           <div class="vanInfo">
             <h3>{{ van.name }}</h3>
             <span class="priceTag">${{ van.price }}<small>/day</small></span>
