@@ -2,8 +2,19 @@
 
 <template>
   <article>
-    <h4 class="submenuTitle">Details</h4>
-    <p class="submenuText">details: {{ $route.query }}</p>
+    <h4 class="submenuTitle">
+      Name: <span class="submenuText">{{ $route.query.name }}</span>
+    </h4>
+    <h4 class="submenuTitle">
+      Category: <span class="submenuText">{{ $route.query.type }}</span>
+    </h4>
+    <h4 class="submenuTitle">
+      Description:
+      <span class="submenuText">{{ $route.query.description }}</span>
+    </h4>
+    <h4 class="submenuTitle">
+      Visibility: <span class="submenuText">Public</span>
+    </h4>
   </article>
 </template>
 
@@ -13,6 +24,6 @@
   padding-left: 1.7rem;
 }
 .submenuText {
-  padding: 0.7rem 1.7rem;
+  font-weight: 400;
 }
 </style>
