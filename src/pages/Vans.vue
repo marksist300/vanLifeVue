@@ -1,14 +1,27 @@
 <script setup lang="ts" suspendible="false">
-import { onMounted, ref } from "vue";
+import { onMounted, ref, computed } from "vue";
+import { useRoute } from "vue-router";
 import { getVanData } from "../utils/auxFunctions";
 
 import type { VanData } from "../config/types";
 import type { Ref } from "vue";
 
 const vans: Ref<VanData[] | undefined> = ref(undefined);
-
 onMounted(async () => {
   vans.value = (await getVanData(`api/vans/`)) as VanData[];
+});
+const route = useRoute();
+
+const typeFilter = ref(route.query.type || "");
+
+const vansToDisplay = computed(() => {
+  if (typeFilter.value) {
+    return vans.value?.filter(
+      (van: VanData) => van.type.toLowerCase() === typeFilter.value
+    );
+  } else {
+    return vans.value;
+  }
 });
 </script>
 
@@ -22,12 +35,7 @@ onMounted(async () => {
     </div>
 
     <section class="vanContainerSection">
-      <div
-        :key="van.id"
-        v-if="vans !== null"
-        v-for="van of vans"
-        class="vanContainer"
-      >
+      <div :key="van.id" v-for="van of vansToDisplay" class="vanContainer">
         <router-link :to="`/vans/${van.id}`">
           <img :src="van.imageUrl" alt="Image of van" class="vanImg" />
           <div class="vanInfoContainer">
