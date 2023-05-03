@@ -8,11 +8,12 @@ import type { Ref } from "vue";
 
 const vans: Ref<VanData[] | undefined> = ref(undefined);
 onMounted(async () => {
+  console.log("mounting Vans");
   vans.value = (await getVanData(`api/vans/`)) as VanData[];
 });
 const route = useRoute();
 
-const isActive = ref("");
+const isActive = ref(route.query.type || "");
 
 const setActive = (name: string) => {
   if (name === "clear") {
@@ -63,14 +64,20 @@ const vansToDisplay = computed(() => {
         @click="setActive('rugged')"
         >rugged</router-link
       >
-      <router-link to="" class="clearBtn" @click="setActive('clear')"
+      <router-link
+        v-if="route.query.type"
+        to=""
+        class="clearBtn"
+        @click="setActive('clear')"
         >Clear filters</router-link
       >
     </nav>
 
     <section class="vanContainerSection">
       <div :key="van.id" v-for="van of vansToDisplay" class="vanContainer">
-        <router-link :to="`/vans/${van.id}`">
+        <router-link
+          :to="{ path: `/vans/${van.id}`, query: { ...route.query } }"
+        >
           <img :src="van.imageUrl" alt="Image of van" class="vanImg" />
           <div class="vanInfoContainer">
             <span class="vanTitle">{{ van.name }}</span>
@@ -151,36 +158,36 @@ main {
 
 .simple:hover {
   background-color: #e17654;
-  color: #fff;
+  color: #ffead0;
   font-weight: 600;
   transition: 0.2s;
 }
 .luxury:hover {
   background-color: #161616;
-  color: #fff;
+  color: #ffead0;
   font-weight: 600;
   transition: 0.2s;
 }
 .rugged:hover {
   background-color: #115e59;
-  color: #fff;
+  color: #ffead0;
   font-weight: 600;
   transition: 0.2s;
 }
 
 .isActiveSimple {
   background-color: #e17654;
-  color: #fff;
+  color: #ffead0;
   font-weight: 600;
 }
 .isActiveLuxury {
   background-color: #161616;
-  color: #fff;
+  color: #ffead0;
   font-weight: 600;
 }
 .isActiveRugged {
   background-color: #115e59;
-  color: #fff;
+  color: #ffead0;
   font-weight: 600;
 }
 </style>
