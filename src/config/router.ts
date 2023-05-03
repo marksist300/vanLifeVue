@@ -95,6 +95,16 @@ const router = createRouter({
       name: "VanItem",
       component: VanItem,
     },
+    {
+      path: "/vans/:pathMath(.*)*",
+      name: "not-found",
+      component: () => import("@/pages/NotFound.vue"),
+    },
+    {
+      path: "/:pathMath(.*)*",
+      name: "not-found",
+      component: () => import("@/pages/NotFound.vue"),
+    },
   ],
 });
 
