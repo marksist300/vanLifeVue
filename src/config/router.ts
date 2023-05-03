@@ -27,7 +27,7 @@ const router = createRouter({
       children: [
         {
           path: "",
-          name: "EMPTY",
+          name: "dashboardDefault",
           redirect: { name: "Dashboard" },
         },
         {
@@ -41,7 +41,7 @@ const router = createRouter({
           children: [
             {
               path: "",
-              name: "EMPTY",
+              name: "HostVans",
               component: HostVans,
             },
             {
@@ -52,7 +52,7 @@ const router = createRouter({
               children: [
                 {
                   path: "",
-                  name: "Ignore",
+                  name: "detailsDefault",
                   redirect: { name: "HostVanDetails" },
                 },
                 {
