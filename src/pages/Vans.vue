@@ -1,15 +1,18 @@
 <script setup lang="ts" suspendible="false">
 import { onMounted, ref, computed } from "vue";
 import { useRoute } from "vue-router";
-import { getVanData } from "../utils/auxFunctions";
+import { useFetch } from "../utils/auxFunctions";
 
-import type { VanData } from "../config/types";
+import type { VanData, returnVanData } from "../config/types";
 import type { Ref } from "vue";
-
 const vans: Ref<VanData[] | undefined> = ref(undefined);
 onMounted(async () => {
-  console.log("mounting Vans");
-  vans.value = (await getVanData(`api/vans/`)) as VanData[];
+  // console.log("mounting Vans");
+  // vans.value = (await getVanData(`api/vans/`)) as VanData[];
+  // isError, isLoading stored in useFetch
+  const { data } = await useFetch<returnVanData>(`api/vans/`);
+  vans.value = data.value?.vans;
+  console.log(vans.value);
 });
 const route = useRoute();
 
