@@ -6,7 +6,8 @@ export const getVanData = async (
   try {
     const response = await fetch(url);
     const data = await response.json();
-    if (data) {
+
+    if (data.vans) {
       return data.vans;
     } else {
       throw new Error("Failed to fetch van data");
