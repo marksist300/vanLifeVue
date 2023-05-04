@@ -43,7 +43,6 @@ onMounted(async () => {
 <style scoped>
 main {
   max-width: 700px;
-  max-height: 700px;
   margin: auto;
 }
 
