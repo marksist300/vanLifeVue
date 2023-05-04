@@ -7,7 +7,7 @@
 <style scoped>
 .container {
   color: #aaaaaa;
-  height: 6rem;
+  height: 4rem;
   display: flex;
   flex-shrink: 0;
   justify-content: center;

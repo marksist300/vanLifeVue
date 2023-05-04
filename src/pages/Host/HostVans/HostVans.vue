@@ -29,6 +29,7 @@ onMounted(() => {
       <div
         v-else-if="hostsVans?.length > 0"
         v-for="van of hostsVans"
+        :key="van.id"
         class="vanCard"
       >
         <router-link :to="{ path: '/host/vans/123', query: { ...van } }">

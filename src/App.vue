@@ -5,9 +5,17 @@ import Footer from "./components/Footer.vue";
 </script>
 
 <template>
-  <Header />
-  <router-view></router-view>
-  <Footer />
+  <div class="site-wrapper">
+    <Header />
+    <router-view></router-view>
+    <Footer />
+  </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.site-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+</style>

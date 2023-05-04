@@ -27,6 +27,7 @@ const router = createRouter({
       children: [
         {
           path: "",
+          name: "dashboardDefault",
           redirect: { name: "Dashboard" },
         },
         {
@@ -51,6 +52,7 @@ const router = createRouter({
               children: [
                 {
                   path: "",
+                  name: "detailsDefault",
                   redirect: { name: "HostVanDetails" },
                 },
                 {
@@ -92,6 +94,11 @@ const router = createRouter({
       path: "/vans/:id",
       name: "VanItem",
       component: VanItem,
+    },
+    {
+      path: "/:pathMath(.*)*",
+      name: "not-found",
+      component: () => import("@/pages/NotFound.vue"),
     },
   ],
 });

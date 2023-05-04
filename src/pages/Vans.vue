@@ -1,34 +1,83 @@
 <script setup lang="ts" suspendible="false">
-import { onMounted, ref } from "vue";
+import { onMounted, ref, computed } from "vue";
+import { useRoute } from "vue-router";
 import { getVanData } from "../utils/auxFunctions";
 
 import type { VanData } from "../config/types";
 import type { Ref } from "vue";
 
 const vans: Ref<VanData[] | undefined> = ref(undefined);
-
 onMounted(async () => {
+  console.log("mounting Vans");
   vans.value = (await getVanData(`api/vans/`)) as VanData[];
+});
+const route = useRoute();
+
+const isActive = ref(route.query.type || "");
+
+const setActive = (name: string) => {
+  if (name === "clear") {
+    isActive.value = "";
+  } else {
+    isActive.value = name;
+  }
+};
+
+const vansToDisplay = computed(() => {
+  if (route.query.type) {
+    return vans.value?.filter(
+      (van: VanData) => van.type.toLowerCase() === route.query.type
+    );
+  } else {
+    return vans.value;
+  }
 });
 </script>
 
 <template>
   <main>
     <h1>Vans ready to go.</h1>
-    <div class="searchFilters">
-      <button class="btn">simple</button>
-      <button class="btn">luxury</button>
-      <button class="btn">rugged</button>
-    </div>
+    <nav class="searchFilters">
+      <router-link
+        to="?type=simple"
+        :class="`vanBtn simple ${
+          isActive === 'simple' ? 'isActiveSimple' : ''
+        }`"
+        @click="setActive('simple')"
+        >simple</router-link
+      >
+
+      <router-link
+        to="?type=luxury"
+        :class="`vanBtn luxury ${
+          isActive === 'luxury' ? 'isActiveLuxury' : ''
+        }`"
+        @click="setActive('luxury')"
+        >luxury</router-link
+      >
+
+      <router-link
+        to="?type=rugged"
+        :class="`vanBtn rugged ${
+          isActive === 'rugged' ? 'isActiveRugged' : ''
+        }`"
+        @click="setActive('rugged')"
+        >rugged</router-link
+      >
+      <router-link
+        v-if="route.query.type"
+        to=""
+        class="clearBtn"
+        @click="setActive('clear')"
+        >Clear filters</router-link
+      >
+    </nav>
 
     <section class="vanContainerSection">
-      <div
-        :key="van.id"
-        v-if="vans !== null"
-        v-for="van of vans"
-        class="vanContainer"
-      >
-        <router-link :to="`/vans/${van.id}`">
+      <div :key="van.id" v-for="van of vansToDisplay" class="vanContainer">
+        <router-link
+          :to="{ path: `/vans/${van.id}`, query: { ...route.query } }"
+        >
           <img :src="van.imageUrl" alt="Image of van" class="vanImg" />
           <div class="vanInfoContainer">
             <span class="vanTitle">{{ van.name }}</span>
@@ -50,6 +99,29 @@ main {
 .searchFilters {
   display: flex;
   gap: 1rem;
+  color: #212120;
+  flex-wrap: wrap;
+}
+
+.searchFilters > * {
+  padding: 0.4rem 1.6rem;
+  font-weight: 500;
+  border: none;
+  border-radius: 5px;
+  transform: none;
+}
+.searchFilters > *:active {
+  scale: 0.95;
+  transition: 200ms;
+}
+
+.vanBtn {
+  background-color: #ffead0;
+  color: #4d4d4d;
+}
+
+.clearBtn {
+  background-color: #f1efec;
   color: #4d4d4d;
 }
 
@@ -64,7 +136,6 @@ main {
   display: flex;
   flex-direction: column;
 }
-
 .vanInfoContainer {
   display: flex;
   align-self: start;
@@ -83,5 +154,40 @@ main {
   width: 10rem;
   height: 10rem;
   cursor: pointer;
+}
+
+.simple:hover {
+  background-color: #e17654;
+  color: #ffead0;
+  font-weight: 600;
+  transition: 0.2s;
+}
+.luxury:hover {
+  background-color: #161616;
+  color: #ffead0;
+  font-weight: 600;
+  transition: 0.2s;
+}
+.rugged:hover {
+  background-color: #115e59;
+  color: #ffead0;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.isActiveSimple {
+  background-color: #e17654;
+  color: #ffead0;
+  font-weight: 600;
+}
+.isActiveLuxury {
+  background-color: #161616;
+  color: #ffead0;
+  font-weight: 600;
+}
+.isActiveRugged {
+  background-color: #115e59;
+  color: #ffead0;
+  font-weight: 600;
 }
 </style>
