@@ -46,6 +46,7 @@ export const useFetch = async <T>(url: string) => {
     }
   };
   await fetchdata();
+  console.log(state.data);
   return {
     ...toRefs(state),
   };

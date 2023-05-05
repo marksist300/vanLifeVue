@@ -65,3 +65,17 @@ a:hover {
 .vanImg {
   border-radius: 5px;
 }
+
+.fallbackContainer {
+  padding: 1.5rem;
+}
+
+.loadingText {
+  font-size: 2rem;
+}
+
+.errorText {
+  font-weight: 500;
+  font-size: 1.2rem;
+  line-height: 1.9rem;
+}

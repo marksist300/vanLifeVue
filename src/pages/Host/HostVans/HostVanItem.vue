@@ -1,13 +1,18 @@
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
-import { useRoute } from "vue-router";
-const router = useRoute();
-import { getVanData } from "@/utils/auxFunctions";
+import { onBeforeMount, ref } from "vue";
+import { useRoute, useRouter } from "vue-router";
+const route = useRoute();
+const router = useRouter();
+import { useFetch } from "@/utils/auxFunctions";
 
-import type { VanData } from "@/config/types";
+import type { VanData, returnVanDetails } from "@/config/types";
 import type { Ref } from "vue";
 
 const van: Ref<VanData | undefined> = ref(undefined);
+const fetchError = ref(false);
+const errorMessage = ref("");
+const fetchLoading = ref(true);
+
 const props = defineProps([
   "id",
   "description",
@@ -15,23 +20,45 @@ const props = defineProps([
   "name",
   "price",
   "type",
+  "hostId",
 ]);
-onMounted(async () => {
+
+onBeforeMount(async () => {
   if (Object.values(props).every(elem => elem !== undefined)) {
     console.log("props found");
+    fetchLoading.value = false;
     van.value = props as VanData;
   } else {
     console.log("fetching data from api");
-    const apiData = await getVanData(`/api/host/vans/${router.params.id}`);
-    console.log("ApiData: ", apiData);
-    van.value = apiData as VanData;
+    const { data, isLoading, isError, error } =
+      await useFetch<returnVanDetails>(`/api/host/vans/${route.params.id}`);
+    van.value = data.value?.vans;
+    fetchError.value = isError.value;
+    errorMessage.value = error.value;
+    fetchLoading.value = isLoading.value;
+    if (van.value) {
+      router.push({
+        query: {
+          type: van.value.type,
+          name: van.value.name,
+          description: van.value.description,
+          price: van.value.price,
+          imageUrl: van.value.imageUrl,
+        },
+      });
+    }
   }
-  console.log("vans set", van.value);
 });
 </script>
 
 <template>
-  <main v-if="van" class="pageContainer">
+  <main class="fallbackContainer" v-if="fetchLoading">
+    <h3 class="loadingText">Loading Vans details</h3>
+  </main>
+  <main class="fallbackContainer" v-else-if="fetchError">
+    <p class="errortext">{{ errorMessage }}</p>
+  </main>
+  <main v-else-if="van" class="pageContainer">
     <router-link to="../" class="breadcrumbLink"
       >👈 <span class="breadcrumbText"> Back to Vans</span></router-link
     >
@@ -57,6 +84,13 @@ onMounted(async () => {
       </nav>
       <router-view></router-view>
     </section>
+  </main>
+  <main v-else class="fallbackContainer">
+    <h3 class="loadingText">There seems to have been an error</h3>
+    <p class="errorText">
+      Either we couldn't find your van or the van you're searching for doesn't
+      exist
+    </p>
   </main>
 </template>
 

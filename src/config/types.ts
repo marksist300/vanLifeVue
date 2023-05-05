@@ -1,6 +1,9 @@
 export interface returnVanData {
   vans: VanData[];
 }
+export interface returnVanDetails {
+  vans: VanData;
+}
 
 export interface VanData {
   description: string;

@@ -1,18 +1,23 @@
 <script setup lang="ts" suspendible="false">
-import { onMounted, ref, computed } from "vue";
+import { onBeforeMount, ref, computed } from "vue";
 import { useRoute } from "vue-router";
 import { useFetch } from "../utils/auxFunctions";
 
 import type { VanData, returnVanData } from "../config/types";
 import type { Ref } from "vue";
 const vans: Ref<VanData[] | undefined> = ref(undefined);
-onMounted(async () => {
-  // console.log("mounting Vans");
-  // vans.value = (await getVanData(`api/vans/`)) as VanData[];
-  // isError, isLoading stored in useFetch
-  const { data } = await useFetch<returnVanData>(`api/vans/`);
+const fetchError = ref(false);
+const errorMessage = ref("");
+const fetchLoading = ref(true);
+
+onBeforeMount(async () => {
+  const { data, isLoading, isError, error } = await useFetch<returnVanData>(
+    `api/vans/`
+  );
   vans.value = data.value?.vans;
-  console.log(vans.value);
+  fetchError.value = isError.value;
+  errorMessage.value = error.value;
+  fetchLoading.value = isLoading.value;
 });
 const route = useRoute();
 
@@ -76,7 +81,13 @@ const vansToDisplay = computed(() => {
       >
     </nav>
 
-    <section class="vanContainerSection">
+    <section v-if="fetchLoading" class="fallbackContainer">
+      <h3 class="loadingText">Loading</h3>
+    </section>
+    <section v-else-if="fetchError" class="fallbackContainer">
+      <p class="errorText">{{ errorMessage }}</p>
+    </section>
+    <section class="vanContainerSection" v-else>
       <div :key="van.id" v-for="van of vansToDisplay" class="vanContainer">
         <router-link
           :to="{ path: `/vans/${van.id}`, query: { ...route.query } }"

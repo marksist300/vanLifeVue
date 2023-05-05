@@ -1,6 +1,4 @@
-<script setup lang="ts">
-console.log("Dashboard Component mounted");
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <h1>Host => Dashboard page</h1>
