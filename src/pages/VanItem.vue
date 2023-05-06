@@ -1,22 +1,37 @@
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
+import { onBeforeMount, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
-import { getVanData } from "../utils/auxFunctions";
+import { useFetch } from "../utils/auxFunctions";
 
-import type { VanData } from "../config/types";
+import type { returnVanDetails, VanData } from "../config/types";
 import type { Ref } from "vue";
 
 const { params } = useRoute();
 const router = useRouter();
 const vanData: Ref<VanData | undefined> = ref(undefined);
+const fetchError = ref(false);
+const errorMessage = ref("");
+const fetchLoading = ref(true);
 
-onMounted(async () => {
-  vanData.value = (await getVanData(`/api/vans/${params.id}`)) as VanData;
+onBeforeMount(async () => {
+  const { data, isLoading, isError, error } = await useFetch<returnVanDetails>(
+    `/api/vans/${params.id}`
+  );
+  vanData.value = data.value?.vans;
+  fetchError.value = isError.value;
+  errorMessage.value = error.value;
+  fetchLoading.value = isLoading.value;
 });
 </script>
 
 <template>
-  <main>
+  <main v-if="fetchLoading" class="fallbackContainer">
+    <h3 class="loadingText">Loading Details now</h3>
+  </main>
+  <main v-else-if="fetchError" class="fallbackContainer">
+    <p class="errorText">{{ errorMessage }}</p>
+  </main>
+  <main v-else>
     <a class="breadcrumbLink" @click.prevent="router.back()">
       👈
       <span class="breadcrumbText">

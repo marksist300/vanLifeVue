@@ -1,33 +1,41 @@
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
-import { getVanData } from "@/utils/auxFunctions";
+import { onBeforeMount, ref } from "vue";
+import { useFetch } from "@/utils/auxFunctions";
 
 import type { Ref } from "vue";
-import type { VanData } from "@/config/types";
+import type { VanData, returnVanData } from "@/config/types";
 
-const hostsVans: Ref<VanData[] | []> = ref<VanData[] | []>([]);
-const isLoading = ref(false);
+const hostsVans: Ref<VanData[] | undefined> = ref(undefined);
+const fetchError = ref(false);
+const errorMessage = ref("");
+const fetchLoading = ref(true);
 
-onMounted(() => {
-  const loadVanData = async () => {
-    isLoading.value = true;
-    hostsVans.value = (await getVanData(`/api/host/vans`)) as VanData[];
-    isLoading.value = false;
-  };
-  loadVanData();
+onBeforeMount(async () => {
+  const { data, isLoading, isError, error } = await useFetch<returnVanData>(
+    `/api/host/vans`
+  );
+  hostsVans.value = data.value?.vans;
+  fetchError.value = isError.value;
+  errorMessage.value = error.value;
+  fetchLoading.value = isLoading.value;
 });
 </script>
 
 <template>
-  <main class="container">
+  <main class="fallbackContainer" v-if="fetchLoading">
+    <h3 class="loadingText">Loading your vans</h3>
+  </main>
+  <main class="fallbackContainer" v-if="fetchError">
+    <p class="errorText">{{ errorMessage }}</p>
+  </main>
+  <div v-else-if="!fetchLoading && hostsVans?.length === 0">
+    <h3>You don't currently have any listed vans</h3>
+  </div>
+  <main class="container" v-else-if="hostsVans">
     <h2>Your listed vans</h2>
-
     <section>
-      <div v-if="isLoading === true">
-        <h1>Loading vans now</h1>
-      </div>
       <div
-        v-else-if="hostsVans?.length > 0"
+        v-if="hostsVans && hostsVans.length > 0"
         v-for="van of hostsVans"
         :key="van.id"
         class="vanCard"
@@ -39,9 +47,6 @@ onMounted(() => {
             <span class="priceTag">${{ van.price }}<small>/day</small></span>
           </div>
         </router-link>
-      </div>
-      <div v-else>
-        <h3>You don't currently have any listed vans</h3>
       </div>
     </section>
     <router-view></router-view>

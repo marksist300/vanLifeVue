@@ -1,18 +1,8 @@
-<script setup lang="ts">
-import { useRoute } from "vue-router";
-import { onMounted, ref } from "vue";
-const route = useRoute();
-const imgUrl = ref("");
-onMounted(() => {
-  if (route.query.imageUrl && typeof route.query.imageUrl === "string") {
-    imgUrl.value = route.query.imageUrl;
-  }
-});
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <article>
-    <img :src="imgUrl" alt="Image of van" class="vanImg" />
+    <img :src="`${$route.query.imageUrl}`" alt="Image of van" class="vanImg" />
   </article>
 </template>
 
