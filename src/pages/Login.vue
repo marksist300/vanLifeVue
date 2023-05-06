@@ -8,7 +8,7 @@ const password = ref("");
 
 const handleSubmit = () => {
   localStorage.setItem("user", email.value);
-  router.push({ name: "Dashboard" });
+  router.replace({ name: "Dashboard" });
 };
 </script>
 
@@ -22,14 +22,12 @@ const handleSubmit = () => {
         placeholder="Email address"
         v-model.trim="email"
       />
-      <p>{{ email }}</p>
       <input
         name="password"
         type="password"
         placeholder="Password"
         v-model="password"
       />
-      {{ password }}
       <button>Log in</button>
     </form>
   </main>
