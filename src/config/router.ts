@@ -4,7 +4,7 @@ import Host from "../pages/Host/Host.vue";
 import About from "../pages/About.vue";
 import Vans from "../pages/Vans.vue";
 import VanItem from "../pages/VanItem.vue";
-
+import Login from "@/pages/Login.vue";
 //Nested Host Routes
 import Dashboard from "../pages/Host/Dashboard.vue";
 import Income from "../pages/Host/Income.vue";
@@ -24,6 +24,9 @@ const router = createRouter({
       path: "/host/",
       name: "Host",
       component: Host,
+      meta: {
+        isAuth: true,
+      },
       children: [
         {
           path: "",
@@ -95,12 +98,22 @@ const router = createRouter({
       name: "VanItem",
       component: VanItem,
     },
+    { path: "/login", name: "Login", component: Login },
     {
       path: "/:pathMath(.*)*",
       name: "not-found",
       component: () => import("@/pages/NotFound.vue"),
     },
   ],
+});
+
+router.beforeEach((to, _, next) => {
+  if (to.meta.isAuth) {
+    console.log(to);
+    return;
+  } else {
+    next();
+  }
 });
 
 export default router;
