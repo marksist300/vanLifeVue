@@ -9,7 +9,6 @@ const vans: Ref<VanData[] | undefined> = ref(undefined);
 const fetchError = ref(false);
 const errorMessage = ref("");
 const fetchLoading = ref(true);
-
 onBeforeMount(async () => {
   const { data, isLoading, isError, error } = await useFetch<returnVanData>(
     `api/vans/`

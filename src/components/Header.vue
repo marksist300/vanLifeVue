@@ -14,6 +14,7 @@ import { Suspense } from "vue";
         </template>
         <template #fallback> Loading... </template>
       </Suspense>
+      <font-awesome-icon icon="fa-regular fa-user" class="userIcon" color="" />
     </div>
   </header>
 </template>
@@ -45,5 +46,10 @@ a.router-link-active {
   font-weight: 700;
   text-decoration: underline;
   color: #161616;
+}
+
+.userIcon:hover {
+  transform: translate(1px, 1px);
+  cursor: pointer;
 }
 </style>
