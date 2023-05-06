@@ -77,7 +77,7 @@ createServer({
   routes() {
     this.namespace = "api";
     this.logging = false;
-    this.timing = 3000;
+    this.timing = 400;
     //@ts-ignore
     this.get("/vans", schema => {
       //@ts-ignore

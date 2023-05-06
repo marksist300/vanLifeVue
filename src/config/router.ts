@@ -98,7 +98,12 @@ const router = createRouter({
       name: "VanItem",
       component: VanItem,
     },
-    { path: "/login", name: "Login", component: Login },
+    {
+      path: "/login",
+      name: "Login",
+      component: Login,
+      meta: { isLogin: true },
+    },
     {
       path: "/:pathMath(.*)*",
       name: "not-found",
@@ -107,10 +112,20 @@ const router = createRouter({
   ],
 });
 
-router.beforeEach((to, _, next) => {
+router.beforeEach(async (to, _, next) => {
+  const userExists = localStorage.getItem("user");
   if (to.meta.isAuth) {
-    console.log(to);
-    return;
+    if (userExists !== null) {
+      next();
+    } else {
+      next("/login");
+    }
+  } else if (to.meta.isLogin) {
+    if (!userExists) {
+      next();
+    } else {
+      next({ name: "Dashboard" });
+    }
   } else {
     next();
   }
