@@ -4,7 +4,7 @@ import Host from "../pages/Host/Host.vue";
 import About from "../pages/About.vue";
 import Vans from "../pages/Vans.vue";
 import VanItem from "../pages/VanItem.vue";
-
+import Login from "@/pages/Login.vue";
 //Nested Host Routes
 import Dashboard from "../pages/Host/Dashboard.vue";
 import Income from "../pages/Host/Income.vue";
@@ -24,6 +24,9 @@ const router = createRouter({
       path: "/host/",
       name: "Host",
       component: Host,
+      meta: {
+        isAuth: true,
+      },
       children: [
         {
           path: "",
@@ -96,11 +99,36 @@ const router = createRouter({
       component: VanItem,
     },
     {
+      path: "/login",
+      name: "Login",
+      component: Login,
+      meta: { isLogin: true },
+    },
+    {
       path: "/:pathMath(.*)*",
       name: "not-found",
       component: () => import("@/pages/NotFound.vue"),
     },
   ],
+});
+
+router.beforeEach(async (to, _, next) => {
+  const userExists = localStorage.getItem("user");
+  if (to.meta.isAuth) {
+    if (userExists !== null) {
+      next();
+    } else {
+      next("/login");
+    }
+  } else if (to.meta.isLogin) {
+    if (!userExists) {
+      next();
+    } else {
+      next({ name: "Dashboard" });
+    }
+  } else {
+    next();
+  }
 });
 
 export default router;

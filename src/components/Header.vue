@@ -1,5 +1,12 @@
 <script setup lang="ts">
 import { Suspense } from "vue";
+import { useRouter } from "vue-router";
+
+const router = useRouter();
+
+const gotoLogin = () => {
+  router.push("/login");
+};
 </script>
 
 <template>
@@ -14,7 +21,11 @@ import { Suspense } from "vue";
         </template>
         <template #fallback> Loading... </template>
       </Suspense>
-      <font-awesome-icon icon="fa-regular fa-user" class="userIcon" color="" />
+      <font-awesome-icon
+        icon="fa-regular fa-user"
+        class="userIcon"
+        @click="gotoLogin()"
+      />
     </div>
   </header>
 </template>
