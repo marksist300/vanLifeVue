@@ -1,4 +1,21 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { onMounted, onUnmounted } from "vue";
+import { useRouter } from "vue-router";
+const router = useRouter();
+
+const goToLogin = () => {
+  if (!localStorage.getItem("user")) {
+    router.replace("/login");
+  }
+};
+onMounted(() => {
+  window.addEventListener("storage", goToLogin);
+});
+
+onUnmounted(() => {
+  window.removeEventListener("storage", goToLogin);
+});
+</script>
 
 <template>
   <nav class="hostNav">

@@ -38,12 +38,13 @@ const handleSubmit = () => {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-inline: 27px;
+  padding-inline: 2rem;
 }
 
 .loginForm {
   display: flex;
   flex-direction: column;
+  gap: 1rem;
   width: 100%;
   max-width: 500px;
 }
@@ -62,7 +63,7 @@ const handleSubmit = () => {
   border: none;
   border-radius: 8px;
   height: 4rem;
-  margin-top: 1.6rem;
+  margin-top: 0.6rem;
   color: white;
   font-weight: 500;
   cursor: pointer;
