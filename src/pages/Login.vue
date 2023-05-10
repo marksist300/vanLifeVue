@@ -1,14 +1,20 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import { useRouter } from "vue-router";
+import { useRouter, useRoute } from "vue-router";
 
 const router = useRouter();
+const route = useRoute();
 const email = ref("");
 const password = ref("");
+const redirect = route.query.redirect as string;
 
 const handleSubmit = () => {
   localStorage.setItem("user", email.value);
-  router.replace({ name: "Dashboard" });
+  if (!redirect) {
+    router.replace({ name: "Dashboard" });
+  } else if (redirect) {
+    router.replace(`${redirect}`);
+  }
 };
 </script>
 

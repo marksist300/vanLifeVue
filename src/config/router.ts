@@ -117,8 +117,10 @@ router.beforeEach(async (to, _, next) => {
   if (to.meta.isAuth) {
     if (userExists !== null) {
       next();
+    } else if (to.fullPath === "/login") {
+      next(`/login`);
     } else {
-      next("/login");
+      next(`login/?redirect=${to.path}`);
     }
   } else if (to.meta.isLogin) {
     if (!userExists) {
