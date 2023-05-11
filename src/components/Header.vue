@@ -10,8 +10,6 @@ const gotoLogin = () => {
 };
 
 const logOut = () => {
-  // localStorage.removeItem("user");
-  // window.dispatchEvent(new Event("storage"));
   window.dispatchEvent(
     new StorageEvent("storage", {
       //@ts-ignore

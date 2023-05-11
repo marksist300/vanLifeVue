@@ -9,8 +9,6 @@ const password = ref("");
 const redirect = route.query.redirect as string;
 
 const handleSubmit = () => {
-  // localStorage.setItem("user", email.value);
-  // window.dispatchEvent(new Event("storage"));
   window.dispatchEvent(
     new StorageEvent("storage", {
       //@ts-ignore
