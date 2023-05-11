@@ -9,9 +9,16 @@ const password = ref("");
 const redirect = route.query.redirect as string;
 
 const handleSubmit = () => {
-  localStorage.setItem("user", email.value);
+  // localStorage.setItem("user", email.value);
+  // window.dispatchEvent(new Event("storage"));
+  window.dispatchEvent(
+    new StorageEvent("storage", {
+      //@ts-ignore
+      newValue: localStorage.setItem("user", email.value),
+    })
+  );
   if (!redirect) {
-    router.replace({ name: "Dashboard" });
+    router.replace({ name: "Host" });
   } else if (redirect) {
     router.replace(`${redirect}`);
   }

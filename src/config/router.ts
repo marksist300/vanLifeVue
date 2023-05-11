@@ -116,11 +116,13 @@ router.beforeEach(async (to, _, next) => {
   const userExists = localStorage.getItem("user");
   if (to.meta.isAuth) {
     if (userExists !== null) {
-      next();
+      if (to.fullPath === "/host/") {
+        next({ name: "Dashboard" });
+      } else next();
     } else if (to.fullPath === "/login") {
       next(`/login`);
     } else {
-      next(`login/?redirect=${to.path}`);
+      next({ name: "Login", query: { redirect: `${to.path}` } });
     }
   } else if (to.meta.isLogin) {
     if (!userExists) {

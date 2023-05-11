@@ -2,7 +2,9 @@
 import { onMounted, onUnmounted } from "vue";
 import { useRouter } from "vue-router";
 const router = useRouter();
+// import { inject } from "vue";
 
+// inject();
 const goToLogin = () => {
   if (!localStorage.getItem("user")) {
     router.replace("/login");

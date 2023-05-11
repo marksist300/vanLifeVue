@@ -1,11 +1,23 @@
 <script setup lang="ts">
-import { Suspense } from "vue";
+import { inject } from "vue";
 import { useRouter } from "vue-router";
 
+const user = inject("user");
 const router = useRouter();
 
 const gotoLogin = () => {
   router.push("/login");
+};
+
+const logOut = () => {
+  // localStorage.removeItem("user");
+  // window.dispatchEvent(new Event("storage"));
+  window.dispatchEvent(
+    new StorageEvent("storage", {
+      //@ts-ignore
+      newValue: localStorage.removeItem("user"),
+    })
+  );
 };
 </script>
 
@@ -13,19 +25,16 @@ const gotoLogin = () => {
   <header>
     <router-link to="/"><h1>#VanLife</h1></router-link>
     <div class="headerLinks">
-      <router-link :to="{ name: 'Login' }">Host</router-link>
+      <router-link to="/host" replace>Host</router-link>
       <router-link to="/about">About</router-link>
-      <Suspense>
-        <template #default>
-          <router-link to="/vans">Vans</router-link>
-        </template>
-        <template #fallback> Loading... </template>
-      </Suspense>
+      <router-link to="/vans">Vans</router-link>
       <font-awesome-icon
         icon="fa-regular fa-user"
         class="userIcon"
         @click="gotoLogin()"
+        v-if="!user"
       />
+      <a href="#" v-else @click="logOut()">Logout</a>
     </div>
   </header>
 </template>

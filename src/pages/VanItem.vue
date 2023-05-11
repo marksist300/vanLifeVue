@@ -26,7 +26,7 @@ onBeforeMount(async () => {
 
 <template>
   <main v-if="fetchLoading" class="fallbackContainer">
-    <h3 class="loadingText">Loading Details now</h3>
+    <h3 class="loadingText">Loading details now</h3>
   </main>
   <main v-else-if="fetchError" class="fallbackContainer">
     <p class="errorText">{{ errorMessage }}</p>

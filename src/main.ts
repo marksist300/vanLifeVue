@@ -9,6 +9,7 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { faUser } from "@fortawesome/free-regular-svg-icons";
 
+window.addEventListener("storage", () => {});
 /* add icons to the library */
 library.add(faUser);
 
