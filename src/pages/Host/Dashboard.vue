@@ -38,17 +38,10 @@ import DashVans from "@/components/DashVans.vue";
 </template>
 
 <style scoped>
-.vanCard {
-  display: flex;
-  align-items: center;
-  background-color: rgba(255, 254, 254, 0.953);
-  margin-bottom: 1rem;
-  padding-block: 1.3rem;
-  padding-left: 1.6rem;
-}
 .hostDashboardEarning {
   background-color: #ffead0;
   padding: 2rem 1.7rem;
+  margin-top: 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
