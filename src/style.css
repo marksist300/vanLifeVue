@@ -79,3 +79,28 @@ a:hover {
   font-size: 1.2rem;
   line-height: 1.9rem;
 }
+
+.hostVanCard {
+  display: flex;
+  align-items: center;
+  background-color: rgba(255, 254, 254, 0.953);
+  margin-bottom: 1rem;
+  padding-block: 1.3rem;
+  padding-left: 1.6rem;
+}
+
+.hostVanImg {
+  height: 9rem;
+  width: 9rem;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.hostVanInfo {
+  margin-left: 1rem;
+}
+
+.priceTag {
+  display: flex;
+  flex-direction: column;
+}

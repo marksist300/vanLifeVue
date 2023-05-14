@@ -1,7 +1,47 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { ref } from "vue";
+
+const reviewsData = [
+  {
+    rating: 5,
+    name: "Elliot",
+    date: "January 3, 2023",
+    text: "The beach bum is such an awesome van! Such a comfortable trip. We had it for 2 weeks and there was not a single issue. Super clean when we picked it up and the host is very comfortable and understanding. Highly recommend!",
+    id: "1",
+  },
+  {
+    rating: 5,
+    name: "Sandy",
+    date: "December 12, 2022",
+    text: "This is our third time using the Modest Explorer for our travels and we love it! No complaints, absolutely perfect!",
+    id: "2",
+  },
+];
+const review = ref(reviewsData[0]);
+</script>
 
 <template>
-  <h1>Host => Reviews page</h1>
+  <section class="host-reviews">
+    <div class="top-text">
+      <h2>Your reviews</h2>
+      <p>Last <span>30 days</span></p>
+    </div>
+    <img class="graph" src="#" alt="Review graph" />
+    <h3>Reviews (2)</h3>
+    <div key="{review.id}">
+      <div class="review">
+        <!-- {[...Array(review.rating)].map((_, i) => (
+        <BsStarFill className="review-star" key="{i}" />
+        ))} -->
+        <div class="info">
+          <p class="name">{{ review.name }}</p>
+          <p class="date">{{ review.date }}</p>
+        </div>
+        <p>{{ review.text }}</p>
+      </div>
+      <hr />
+    </div>
+  </section>
 </template>
 
 <style scoped></style>

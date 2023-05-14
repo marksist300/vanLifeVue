@@ -7,11 +7,12 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 
 /* import font awesome icon component */
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-import { faUser } from "@fortawesome/free-regular-svg-icons";
+import { faUser, faStar } from "@fortawesome/free-regular-svg-icons";
+import { faStar as faStarOutline } from "@fortawesome/free-solid-svg-icons";
 
 window.addEventListener("storage", () => {});
 /* add icons to the library */
-library.add(faUser);
+library.add(faUser, faStar, faStarOutline);
 
 createApp(App)
   .component("font-awesome-icon", FontAwesomeIcon)

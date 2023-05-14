@@ -158,11 +158,6 @@ main {
   margin-top: 0.3rem;
 }
 
-.priceTag {
-  display: flex;
-  flex-direction: column;
-}
-
 .vanImg {
   width: 10rem;
   height: 10rem;
