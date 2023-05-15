@@ -1,18 +1,73 @@
-# Vue 3 + TypeScript + Vite
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
 
-## Recommended IDE Setup
+# VanLifeVue
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+An app made in Vue using Vue router to mimic the React based app Bob Ziroll designed.
 
-## Type Support For `.vue` Imports in TS
+<h2>
+    <a href="https://vanlifevue.netlify.app/">View Demo</a>
+  </h2>
+</div>
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+<br />
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+<!-- Table of Contents -->
 
-1. Disable the built-in TypeScript Extension
-   1. Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-   2. Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+# :notebook_with_decorative_cover: Table of Contents
+
+- [About the Project](#star2-about-the-project)
+  - [Tech Stack](#space_invader-tech-stack)
+  - [Prerequisites](#bangbang-prerequisites)
+  - [Installation](#gear-installation)
+  - [Run Locally](#running-run-locally)
+
+<!-- About the Project -->
+
+## :star2: About the Project
+
+<img width="277" alt="Screenshot 2023-05-15 at 15 21 48" src="https://github.com/marksist300/vanLifeVue/assets/88390425/bd4661a5-4548-4376-91d3-5edc0302e61f">
+
+### What is VanLifeVue
+
+A simple FE project built to demonstrate some of the advanced features in Vue router. It has a simple faux-server running to mimic a backend and a demo auth system, which simply allows any user to login and stores their credentials in local storage (To mimic the login flow for demo purposes only).
+
+<!-- TechStack -->
+
+### :space_invader: Tech Stack
+
+<details>
+  <ul>
+    <li><a href="https://vuejs.org/">Vuejs</a></li>
+    <li><a href="https://router.vuejs.org/">Vue Router</a></li>
+    <li><a href="https://miragejs.com/">Mirage JS</a></li>
+  </ul>
+</details>
+
+<!-- Prerequisites -->
+
+### :bangbang: Prerequisites
+
+This project was built using Yarn, but you can user either Yarn or NPM to install the node packages.
+
+<!-- Installation -->
+
+### :gear: Installation
+
+Install with yarn
+
+<!-- Run Locally -->
+
+#### :running: Run Locally
+
+Clone the project
+
+```bash
+  git clone https://github.com/marksist300/vanLifeVue.git
+```
+
+In the root directory
+
+```bash
+  yarn
+  yarn  dev
+```
