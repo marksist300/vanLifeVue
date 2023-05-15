@@ -45,6 +45,7 @@ import DashVans from "@/components/DashVans.vue";
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-radius: 10px 10px 0 0;
 }
 .hostDashboardEarning > .info > h1 {
   font-size: 2.5rem;
@@ -56,6 +57,7 @@ import DashVans from "@/components/DashVans.vue";
   padding: 25px 26px;
   display: flex;
   align-items: center;
+  border-radius: 0 0 10px 10px;
 }
 
 .hostDashboardReviews > h2 {

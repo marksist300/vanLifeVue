@@ -39,6 +39,7 @@
   height: 400px;
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.46), rgba(0, 0, 0, 0.46))
     no-repeat center center;
+  border-radius: 10px;
 }
 
 .aboutPageContent {

@@ -50,7 +50,6 @@ onUnmounted(() => {
 <style scoped>
 ul {
   display: flex;
-
   margin: 0;
   padding: 0;
   list-style: none;

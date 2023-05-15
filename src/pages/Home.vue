@@ -23,6 +23,7 @@
   min-height: 350px;
   height: 400px;
   color: white;
+  border-radius: 10px;
   padding: 4rem 1.6rem;
   display: flex;
   flex-direction: column;
